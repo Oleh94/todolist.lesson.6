@@ -5,10 +5,8 @@ import {TaskType} from "./Todolist";
 
 type MapComponentPropsType = {
     id: string
-    title: string
     tasks: Array<TaskType>
     removeTask: (taskId: string, todolistId: string) => void
-    editItemTodolist: (id: string, title: string) => void
     editItemTask: (todolistID: string, taskID: string, title: string) => void
     changeTaskStatus: (id: string, isDone: boolean, todolistId: string) => void
 }

@@ -2,8 +2,8 @@ import React from "react";
 import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
-import Checkbox from "./Checkbox";
 import {MapComponent} from "./MapComponent";
+import {Button} from "./Button";
 
 export type TaskType = {
     id: string
@@ -28,9 +28,9 @@ type PropsType = {
 export function Todolist(props: PropsType) {
     const removeTodolist = () => props.removeTodolist(props.id)
 
-    const onAllClickHandler = () => props.changeFilter("all", props.id);
-    const onActiveClickHandler = () => props.changeFilter("active", props.id);
-    const onCompletedClickHandler = () => props.changeFilter("completed", props.id);
+    const onFilterClickHandler = (filter: FilterValuesType) => props.changeFilter(filter, props.id);
+
+
     const AddItemFormHandler = (title: string) => props.addTask(title, props.id);
 
     const editItemTodolistHandler = (title: string) => props.editItemTodolist(props.id, title);
@@ -43,31 +43,22 @@ export function Todolist(props: PropsType) {
                 callback={editItemTodolistHandler}
 
             />
-            <button onClick={removeTodolist}>x</button>
+            <Button name={"x"} callback={removeTodolist}/>
         </h3>
         <AddItemForm
             callback={AddItemFormHandler}
         />
         <MapComponent
             id={props.id}
-            title={props.title}
             tasks={props.tasks}
             removeTask={props.removeTask}
-            editItemTodolist={props.editItemTodolist}
             editItemTask={props.editItemTask}
             changeTaskStatus={props.changeTaskStatus}
-
         />
         <div>
-            <button className={props.filter === "all" ? "active-filter" : ""}
-                    onClick={onAllClickHandler}>All
-            </button>
-            <button className={props.filter === "active" ? "active-filter" : ""}
-                    onClick={onActiveClickHandler}>Active
-            </button>
-            <button className={props.filter === "completed" ? "active-filter" : ""}
-                    onClick={onCompletedClickHandler}>Completed
-            </button>
+            <Button filter={props.filter} name={"all"} callback={() => onFilterClickHandler("all")}/>
+            <Button filter={props.filter} name={"active"} callback={() => onFilterClickHandler("active")}/>
+            <Button filter={props.filter} name={"completed"} callback={() => onFilterClickHandler("completed")}/>
         </div>
     </div>
 }

@@ -1,4 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import {Button} from "./Button";
 
 type FullInputPropsType = {
     callback: (title: string) => void
@@ -36,7 +37,7 @@ export const AddItemForm = (props : FullInputPropsType) => {
                    onKeyPress={onKeyPressHandler}
                    className={error ? "error" : ""}
             />
-            <button onClick={addTask}>+</button>
+            <Button name={"+"} callback={addTask}/>
             {
                 error && <div className="error-message">{error}</div>
             }

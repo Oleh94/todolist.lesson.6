@@ -5,7 +5,7 @@ type CheckboxPropsType = {
     checked : boolean
 }
 
-const Checkbox = (props : CheckboxPropsType) => {
+export const Checkbox = (props : CheckboxPropsType) => {
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let newIsDoneValue = e.currentTarget.checked;
         props.changeTaskStatus(newIsDoneValue);
